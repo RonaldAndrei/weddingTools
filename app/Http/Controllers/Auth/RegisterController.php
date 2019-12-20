@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FuncoesAux;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -49,8 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:3|confirmed',
         ]);
     }
 
@@ -62,10 +62,40 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $name = RegisterController::removeAccents($data['name']);
+        $family = RegisterController::removeAccents($data['family']);
+        $familyCode = base64_encode($family);
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'name' => $name,
+            'family' => $family,
+            'familyCode' => $familyCode,
+            'password' => bcrypt($familyCode),
         ]);
+    }
+
+    public function removeAccents($string){
+        return strtolower(preg_replace(
+            array(
+                "/(á|à|ã|â|ä)/",
+                "/(Á|À|Ã|Â|Ä)/",
+                "/(é|è|ê|ë)/",
+                "/(É|È|Ê|Ë)/",
+                "/(í|ì|î|ï)/",
+                "/(Í|Ì|Î|Ï)/",
+                "/(ó|ò|õ|ô|ö)/",
+                "/(Ó|Ò|Õ|Ô|Ö)/",
+                "/(ú|ù|û|ü)/",
+                "/(Ú|Ù|Û|Ü)/",
+                "/(ñ)/",
+                "/(Ñ)/"
+            ),
+            explode(" ", "a A e E i I o O u U n N"),
+            $string
+        ));
+    }
+
+    public function showRegistrationForm() {
+        return view('auth.register');
     }
 }

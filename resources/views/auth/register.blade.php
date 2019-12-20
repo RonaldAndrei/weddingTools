@@ -1,9 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+@if (Auth::guest())
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading" align="center">Necessário efetuar o login!</div>
+            </div>
+        </div>
+    </div>
+</div>
+@else
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
 
@@ -12,57 +23,31 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="col-md-12">
+                                <input id="name" type="text" class="form-control" name="name" placeholder="Name" value="CONVIDADO" onkeyup="this.value = this.value.toUpperCase();" autocomplete="off" required>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="form-group{{ $errors->has('family') ? ' has-error' : '' }}">
+                            <div class="col-md-12">
+                                <input id="family" type="text" class="form-control" name="family" placeholder="Family" value="{{ old('name') }}" onkeyup="this.value = this.value.toUpperCase();preenchePassword();" autocomplete="off" required>
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="col-md-12">
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Password" autocomplete="off" style="display: none;">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="col-md-12">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" autocomplete="off" style="display: none;">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-12 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
@@ -74,4 +59,14 @@
         </div>
     </div>
 </div>
+@endif
+<script>
+
+    function preenchePassword() {
+        var password = document.getElementById("family");
+        $("#password").val(password.value);
+        $("#password-confirm").val(password.value);
+    };
+
+</script>
 @endsection
