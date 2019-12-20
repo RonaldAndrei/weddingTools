@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\FuncoesAux;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -93,9 +92,5 @@ class RegisterController extends Controller
             explode(" ", "a A e E i I o O u U n N"),
             $string
         ));
-    }
-
-    public function showRegistrationForm() {
-        return view('auth.register');
     }
 }
