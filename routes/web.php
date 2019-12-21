@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
+//routes default
 Auth::routes();
-
+Route::get('/', function () { return view('auth.login'); });
 Route::get('/home', 'HomeController@index')->name('home');
+
+//routes user
+Route::get('/usernew', 'UserController@retornaViewUserNew')->name('userView');
+Route::post('/usernew', 'UserController@validator')->name('userNew');
+
+//routes truco
+//routes confirmacao
+//routes info
