@@ -17,7 +17,8 @@ Route::get('/', function () { return view('auth.login'); });
 Route::get('/home', 'HomeController@index')->name('home');
 
 //routes user
-Route::get('/usernew', 'UserController@retornaViewUserNew')->name('userView');
+Route::get('/userhome', 'UserController@retornaViewUserHome')->name('userView');
+Route::get('/usernew', 'UserController@retornaViewUserNew')->name('userNew');
 Route::post('/usernew', 'UserController@validator')->name('userNew');
 
 //routes truco

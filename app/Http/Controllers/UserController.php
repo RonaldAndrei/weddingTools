@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
 class UserController extends Controller
 {
@@ -20,10 +21,28 @@ class UserController extends Controller
     |
     */
 
-    public function retornaViewUserNew(){
+    public function retornaViewUserHome() {
         if (Auth::check()) {
+
+            $users = DB::table('user')
+                        ->where('status', '=', '1')
+                        ->get();
+
+            return view('user.userHome', compact('users'));
+
+        } else {
+
+            return view('auth.login');
+        }
+    }
+
+    public function retornaViewUserNew() {
+
+        if (Auth::check()) {
+
             return view('user.userNew');
         } else {
+
             return view('auth.login');
         }
     }
@@ -61,6 +80,7 @@ class UserController extends Controller
         $password = UserController::formatString(base64_encode($family));
 
         return User::create([
+            'status' => 1,
             'name' => $name,
             'family' => $family,
             'password' =>$password,

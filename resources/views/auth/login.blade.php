@@ -46,19 +46,5 @@
         </div>
     </div>
 </div>
-
-<script>
-
-    function mostraInputName() {
-        var password = document.getElementById("password");
-
-        if(password.value == "sudo"){
-            $("#name").show();
-        } else {
-            $("#name").hide();
-        }
-    };
-
-</script>
 @endguest
 @endsection

@@ -12,29 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/appStyle.css') }}" rel="stylesheet">
 </head>
-
-<style>
-    #btnMenu {
-        float: left;
-        display: block;
-        
-    }
-
-    #topBar {
-        width: 100%;
-    }
-
-    #sideBarLeft {
-        float: left;
-        width: 20%;
-        margin-top: -1%;
-    }
-    
-    #dropDownLogout {
-
-    }
-</style>
 
 <body>
     <div id="app">
@@ -96,9 +75,11 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="active">
                     <ul class="nav nav-second-level collapse in">
-                        <li><a href="/usernew">Convidados</a></li>
+                        @if ( Auth::user()->name != "convidado" )
+                        <li><a href="/userhome">Usuários</a></li>
+                        @endif
                         <li><a href="/home">Informações</a></li>
-                        <li><a href="#">Confirmação</a></li>
+                        <li><a href="#">Confirmar presença</a></li>
                         <li><a href="#">Torneio de Truco</a></li>
                         <li><a href="#">Presentes</a></li>
                     </ul>
@@ -110,17 +91,7 @@
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script>
-        
-        function showMenuLateral() {
-            if($('#sideBarLeft').css('display') == 'none') {
-                $('#sideBarLeft').show();
-            } else {
-                $('#sideBarLeft').hide();
-            }
-        };
-
-    </script>
+    <script src="{{ asset('js/appFunctions.js') }}"></script>
 
 @yield('content')
 
