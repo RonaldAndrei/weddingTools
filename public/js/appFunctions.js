@@ -1,5 +1,4 @@
-    // menu lateral
-
+    //login
     function mostraInputName() {
         var password = document.getElementById("password");
 
@@ -10,28 +9,29 @@
         }
     };
 
+    //menu lateral
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    
     function showMenuLateral() {
         if ($('#sideBarLeft').css('display') == 'none') {
 
             $('#sideBarLeft').show();
-
-            $('#userNewForm').removeClass('col-md-offset-3');
-            $('#userNewForm').addClass('col-md-offset-1');
-
-            $('#infoPanel').removeClass('col-md-10');
-            $('#infoPanel').addClass('col-md-8');
         } else {
 
             $('#sideBarLeft').hide();
-
-            $('#userNewForm').removeClass('col-md-offset-1');
-            $('#userNewForm').addClass('col-md-offset-3');
-
-            $('#infoPanel').removeClass('col-md-8');
-            $('#infoPanel').addClass('col-md-10');
         }
     };
 
+    //usuarios
     function userExcluir(id) {
         alert(id);
+    };
+
+    function preenchePassword() {
+        var password = document.getElementById("family");
+        $("#password").val(password.value);
+        $("#password-confirm").val(password.value);
     };
