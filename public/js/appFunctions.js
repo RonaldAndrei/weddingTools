@@ -46,8 +46,24 @@
         $("#password-confirm").val(password.value);
     };
 
+    //convidados
+    function convidadoExcluir(id, csrf_token) {
+        $.post(
+            "/convidadodelete", 
+            {
+                url: '/convidadodelete',
+                id: id,
+                _token: csrf_token
+            }, 
+            function(result){
+                location.reload();
+            }
+        );
+    };
+
     //busca nas tabelas
-    function tableSearch(input, table) {
+    function tableSearch(input, table, coluna) {
+        
         var inputValue, filter, tableValue, item, i, txtValue;
         
         inputValue = document.getElementById(input);
@@ -57,11 +73,14 @@
 
         for (i = 0; i < item.length; ++i) {
             txtValue = item[i].cells;
-            txtValue = txtValue[0].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                item[i].style.display = "";
-            } else {
-                item[i].style.display = "none";
+            txtValue = txtValue[coluna].innerText;
+
+            if (item[i].cells[0].tagName == 'TD') {
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    item[i].style.display = "";
+                } else {
+                    item[i].style.display = "none";
+                }
             }
         }
     }

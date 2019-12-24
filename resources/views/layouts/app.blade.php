@@ -39,12 +39,12 @@
 
         <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#convidadosDiv" aria-expanded="false"><span><i class="fas fa-address-card"></i></span>Convidados</a>
         <div class="collapse navbar-collapsed" id="convidadosDiv">
-          <a href="#" class="list-group-item sub-item">Listar Convidados</a>
+          <a href="/convidadohome" class="list-group-item sub-item">Listar Convidados</a>
           <a href="/convidadonew" class="list-group-item sub-item" id="userNew">Novo Convidado</a>
         </div>
         @endif
         <a href="/home" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-info-circle"></i></span>Informações</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-calendar-check"></i></span>Confirmar presença</a>
+        <a href="/convidadoconfirma" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-calendar-check"></i></span>Confirmar presença</a>
         <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-trophy"></i></span>Torneio de Truco</a>
         <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-gifts"></i></span>Presentes</a>
       </div>

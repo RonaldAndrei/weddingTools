@@ -27,22 +27,59 @@ class ConvidadoController extends Controller
                     return $this->retornaViewConvidadoNew();
                     break;
                 }
-                default : break;
+                case "/convidadodelete": {
+                    if($data['id'] != null)
+                        $this->deleteConvidado($data);
+                    return $this->retornaViewConvidadoHome();
+                    break;
+                }
+                default : return view('home'); break;
             }
         }
     }
 
-    public function retornaViewConvidadoHome() {
-        // if (Auth::check()) {
+    public function retornaViewConvidadoHome($url) {
+        if (Auth::check()) {
 
-        //     $users = DB::table('user')
-        //                 ->where('status', '=', '1')
-        //                 ->get();
+            switch ($url) {
+                case "convidadohome": {
+                    $convidados = DB::select("SELECT 
+                                                t1.id idConvidado,
+                                                t1.ativo ativoConvidado,
+                                                t1.nome nomeConvidado,
+                                                t1.confirmado confirmadoConvidado,
+                                                t2.id idUser,
+                                                t2.family familyUser
+                                                FROM convidado t1
+                                                JOIN user t2 ON t2.id = t1.idFamilia
+                                               WHERE t1.ativo = 1
+                                                 AND t2.status = 1;");
 
-        //     return view('user.userHome', compact('users'));
-        // } else {
-        //     return view('auth.login');
-        // }
+                    return view('convidado.convidadoHome', compact('convidados'));
+                    break;
+                }
+                case "convidadoconfirma": {
+                    $convidados = DB::select("SELECT 
+                                                t1.id idConvidado,
+                                                t1.ativo ativoConvidado,
+                                                t1.nome nomeConvidado,
+                                                t1.confirmado confirmadoConvidado,
+                                                t2.id idUser,
+                                                t2.family familyUser
+                                                FROM convidado t1
+                                                JOIN user t2 ON t2.id = t1.idFamilia
+                                               WHERE t1.ativo = 1
+                                                 AND t2.status = 1
+                                                 AND t1.idFamilia = " . Auth::id() . ";");
+
+                    return view('convidado.convidadoHome', compact('convidados','url'));
+                    break;
+                }
+                default : return view('home'); break;
+            }
+        } else {
+            return view('auth.login');
+        }
     }
 
     public function retornaViewConvidadoNew() {
@@ -75,11 +112,11 @@ class ConvidadoController extends Controller
     }
 
     public function deleteConvidado(array $data) {
-        // $id = $data['id'];
+        $id = $data['id'];
 
-        // DB::table('user')
-        //     ->where('id', $id)
-        //     ->update(['status' => 0]);
+        DB::table('convidado')
+            ->where('id', $id)
+            ->update(['ativo' => 0]);
     }
 
     public function formatString($string) {

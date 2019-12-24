@@ -18,7 +18,7 @@
     #url {
         display: none;
     }
-    
+
     #nameSite, #topBar {
         height: 9%;
     }
@@ -83,6 +83,18 @@
     i {
         font-size: 19px;
         color: #9B1B30;
+    }
+
+    .fa-trash-alt {
+        color: rgb(214, 50, 50);
+    }
+
+    .fa-thumbs-up {
+        color: #2ab27b;
+    }
+
+    .fa-thumbs-down {
+        color: rgb(214, 56, 50);
     }
 
     /* botoes */
