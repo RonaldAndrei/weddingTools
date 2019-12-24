@@ -18,7 +18,8 @@
     <link href="{{ asset('css/appStyle.css') }}" rel="stylesheet">
 
     <!-- Icons -->
-    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -30,11 +31,22 @@
       <div id="nameSite" class="sidebar-heading"><a class="navbar-brand" href="{{ url('/home') }}"> {{ config('app.name', 'WeddingTools') }} </a></div>
       <div class="list-group list-group-flush">
         @if ( Auth::user()->name != "convidado" )
-        <a href="/userhome" class="list-group-item list-group-item-action bg-light">Usuários</a>
+        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#userDiv" aria-expanded="false"><span><i class="fas fa-users"></i></span>Usuários</a>       
+        <div class="collapse navbar-collapsed" id="userDiv">
+          <a href="/userhome" class="list-group-item sub-item">Listar Usuários</a>
+          <a href="/usernew" class="list-group-item sub-item" id="userNew">Novo Usuário</a>
+        </div>
+
+        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#convidadosDiv" aria-expanded="false"><span><i class="fas fa-address-card"></i></span>Convidados</a>
+        <div class="collapse navbar-collapsed" id="convidadosDiv">
+          <a href="#" class="list-group-item sub-item">Listar Convidados</a>
+          <a href="/convidadonew" class="list-group-item sub-item" id="userNew">Novo Convidado</a>
+        </div>
         @endif
-        <a href="/home" class="list-group-item list-group-item-action bg-light">Informações</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Confirmar presença</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Torneio de Truco</a>
+        <a href="/home" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-info-circle"></i></span>Informações</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-calendar-check"></i></span>Confirmar presença</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-trophy"></i></span>Torneio de Truco</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-gifts"></i></span>Presentes</a>
       </div>
     </div>
     @endauth
@@ -46,14 +58,14 @@
       <nav id="topBar" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         @auth
         <!-- menu button -->                 
-        <button class="btn btn-light" id="menu-toggle"><span><i class="icon ion-md-menu"></i></span></button>
+        <button class="btn btn-light" id="menu-toggle"><span><i class="fas fa-bars"></i></span></button>
         <!-- sair button -->   
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item">
+          <li class="nav-item" id="btnSair">
             <form action="{{ route('logout') }}" method="POST">
                 {{ csrf_field() }}
-                <button id="btnSair" type="submit" class="btn btn-light">
-                    <span><i class="icon ion-md-exit"></i></span>
+                <button type="submit" class="btn btn-light">
+                    <span><i class="fas fa-sign-out-alt"></i></span>
                 </button>
             </form>
           </li>

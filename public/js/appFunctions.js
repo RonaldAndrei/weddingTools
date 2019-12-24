@@ -14,7 +14,7 @@
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-    
+
     function showMenuLateral() {
         if ($('#sideBarLeft').css('display') == 'none') {
 
@@ -26,8 +26,18 @@
     };
 
     //usuarios
-    function userExcluir(id) {
-        alert(id);
+    function userExcluir(id, csrf_token) {
+        $.post(
+            "/userdelete", 
+            {
+                url: '/userdelete',
+                id: id,
+                _token: csrf_token
+            }, 
+            function(result){
+                location.reload();
+            }
+        );
     };
 
     function preenchePassword() {
@@ -35,3 +45,23 @@
         $("#password").val(password.value);
         $("#password-confirm").val(password.value);
     };
+
+    //busca nas tabelas
+    function tableSearch(input, table) {
+        var inputValue, filter, tableValue, item, i, txtValue;
+        
+        inputValue = document.getElementById(input);
+        filter = inputValue.value.toUpperCase();
+        tableValue = document.getElementById(table);
+        item = tableValue.getElementsByTagName('tr');
+
+        for (i = 0; i < item.length; ++i) {
+            txtValue = item[i].cells;
+            txtValue = txtValue[0].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                item[i].style.display = "";
+            } else {
+                item[i].style.display = "none";
+            }
+        }
+    }

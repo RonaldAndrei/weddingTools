@@ -3,13 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div id="userNewForm" class=".col-md-6 .col-md-offset-1">
+        <div id="userNewForm" class="col align-self-center">
             <div class="panel panel-default">
-                <div class="panel-heading">Novo convidado</div>
+                <div class="panel-heading">Novo Usuário</div>
                 <div class="panel-body">
                     <div class="panel-heading">
                         <form class="form-horizontal" method="POST" action="/usernew">
+                            <!-- envia o token via POST -->
                             {{ csrf_field() }}
+                            <!-- envia a URL via POST -->
+                            <input id="url" name="url" type="text" value="/usernew">
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <div class=".col-md">

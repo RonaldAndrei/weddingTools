@@ -4,22 +4,15 @@
 @if ( Auth::user()->name != "convidado" )
 <div class="container">
     <div class="row">
-        <div id="infoPanel" class="col align-self-center">
+        <div class="col align-self-center">
             <div class="panel panel-default">
                 <div class="panel-heading">Usuários</div>
                 <div class="panel-heading">
-                    <div class="form-inline">
-                        <div class="">
-                            <button type="submit" id="btnUserNew" class="btn btn-primary" onclick="location.href = '/usernew';">Novo Usuário</button>
-                        </div>
-                        <div class="">
-                            <input type="text" id="userSearch" class="input form-control" onkeyup="myFunction()" placeholder="Busca por nomes..">  
-                        </div>
-                    </div>
+                    <input type="text" id="userSearch" class="input form-control" onkeyup="tableSearch('userSearch','userTable')" placeholder="Busca por nomes..">  
                 </div>
                 <div class="table-responsive-sm">
                     <div class="panel-body">
-                        <table class="table table-striped table-hover">
+                        <table id="userTable" class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Família</th>
@@ -35,8 +28,8 @@
                                     <td>{{ $user->family }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->password }}</td>
-                                    <td>
-                                        <div><button type="button" class="btn btn-danger btn-xs" onclick="userExcluir('{{ $user->id }}')">Excluir</button></div>
+                                    <td>                                        
+                                        <div><button type="button" class="btn btn-danger btn-xs" onclick="userExcluir('{{ $user->id }}' , '{{ csrf_token() }}')">Excluir</button></div>
                                     </td>
                                 </tr>
                             @endforeach

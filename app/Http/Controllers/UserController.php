@@ -20,6 +20,35 @@ class UserController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
+    
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator()
+    {
+        $data = $_POST;
+        if ($data != null) 
+        {
+            switch ($data["url"]) {
+                case "/usernew": {
+                    if($data['name'] != null && $data['family'] != null)
+                        $this->createUser($data);
+                    return $this->retornaViewUserNew();
+                    break;
+                }
+                case "/userdelete": {
+                    if($data['id'] != null)
+                        $this->deleteUser($data);
+                    return $this->retornaViewUserHome();
+                    break;
+                }
+                default : break;
+            }
+        }
+    }
 
     public function retornaViewUserHome() {
         if (Auth::check()) {
@@ -48,36 +77,15 @@ class UserController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator()
-    {
-        $data = $_POST;
-
-        if ($data != null) 
-        {
-            if($data['name'] != null && $data['family'] != null)
-                UserController::create($data);
-
-            return UserController::retornaViewUserNew();
-        }
-        
-    }
-
-    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        $name = UserController::formatString($data['name']);
-        $family = UserController::formatString($data['family']);
-        $password = UserController::formatString(base64_encode($family));
+    protected function createUser(array $data) {
+        $name = $this->formatString($data['name']);
+        $family = $this->formatString($data['family']);
+        $password = $this->formatString(base64_encode($family));
 
         return User::create([
             'status' => 1,
@@ -87,7 +95,15 @@ class UserController extends Controller
         ]);
     }
 
-    public function formatString($string){
+    public function deleteUser(array $data) {
+        $id = $data['id'];
+
+        DB::table('user')
+            ->where('id', $id)
+            ->update(['status' => 0]);
+    }
+
+    public function formatString($string) {
          
         $string = preg_replace(
             array(

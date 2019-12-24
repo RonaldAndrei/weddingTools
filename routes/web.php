@@ -20,7 +20,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/userhome', 'UserController@retornaViewUserHome')->name('userView');
 Route::get('/usernew', 'UserController@retornaViewUserNew')->name('userNew');
 Route::post('/usernew', 'UserController@validator')->name('userNew');
+Route::post('/userdelete', 'UserController@validator')->name('userDel');
 
+//routes convidados
+Route::get('/convidadonew', 'ConvidadoController@retornaViewConvidadoNew')->name('convidadoNew');
+Route::post('/convidadonew', 'ConvidadoController@validator')->name('convidadoNew');
 //routes truco
 //routes confirmacao
 //routes info

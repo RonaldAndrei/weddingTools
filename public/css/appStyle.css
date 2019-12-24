@@ -15,11 +15,20 @@
         background-color: rgba(0,0,0,0);
     }
     
+    #url {
+        display: none;
+    }
+    
     #nameSite, #topBar {
         height: 9%;
     }
 
     #nameSite>a {
+        color: #9B1B30;
+    }
+
+    .panel-default>.panel-heading {
+        font-weight: bolder;
         color: #9B1B30;
     }
     
@@ -30,8 +39,13 @@
         -moz-transition: margin .25s ease-out;
         -o-transition: margin .25s ease-out;
         transition: margin .25s ease-out;
+        font-weight: bold;
     }
     
+    #sidebar-wrapper>div>a>span {
+        margin-right: 1rem;
+    }
+
     #sidebar-wrapper .sidebar-heading {
         padding: 0.5rem 1rem;
         font-size: 1rem;
@@ -68,6 +82,7 @@
     /* icones */
     i {
         font-size: 19px;
+        color: #9B1B30;
     }
 
     /* botoes */
@@ -77,9 +92,15 @@
     .btn-primary {
         background-color: #9B1B30;
     }
-    .btn-primary:hover {
+    .btn-primary:hover, .btn-primary:active {
         background-color: #9b1b30c7;
     }
-    
+    #btnSair {
+        margin-right: 3rem;
+    }
     /* Usuarios */
-    
+    .sub-item {
+        font-weight: normal;
+        padding-left: 3rem;
+        background-color: #eee;
+    }
