@@ -40,6 +40,36 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('parentesco') ? ' has-error' : '' }}">
+                                <div class=".col-md">
+                                    <label>Parentesco</label>
+                                    <select id="parentesco" name="parentesco" class="form-control" required>
+                                        <option value="D">Daniela</option>
+                                        <option value="R">Ronald</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('faixaEtaria') ? ' has-error' : '' }}">
+                                <div class=".col-md">
+                                    <label>Faixa Etária</label>
+                                    <select id="faixaEtaria" name="faixaEtaria" class="form-control" required>
+                                        <option value="A">Adulto</option>
+                                        <option value="C">Criança</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('bebida') ? ' has-error' : '' }}">
+                                <div class=".col-md">
+                                    <label>Consumo de bebida</label>
+                                    <select id="bebida" name="bebida" class="form-control" required>
+                                        <option value="0">Não</option>
+                                        <option value="1">Sim</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('confirmado') ? ' has-error' : '' }}">
                                 <div class=".col-md">
                                     <label>Presença</label>

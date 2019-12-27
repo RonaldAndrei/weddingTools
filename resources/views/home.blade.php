@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($confirmado)
 <div class="container">
     <div id="infoPanel" class=".col-md-auto">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3>Informações</h3></div>
+            <div class="panel-heading">Informações</div>
 
             <div class="panel-body">
                 @if (session('status'))
@@ -12,6 +13,10 @@
                         {{ session('status') }}
                     </div>
                 @endif
+
+                <div>
+                    <h2>Faltam {{ date('Y-m-d') }} dias</h2>
+                </div>
 
                 <h4>Cerimônia</h4>
                 <ul>
@@ -32,4 +37,7 @@
         </div>
     </div>
 </div>
+@else
+    @include('avisos.avisoConfirmaPresenca')
+@endif
 @endsection

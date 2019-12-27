@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use App\Http\Controllers\FuncoesAuxController;
 
 class ConvidadoController extends Controller
 {
@@ -16,21 +17,30 @@ class ConvidadoController extends Controller
     |--------------------------------------------------------------------------    |
     */
 
-    protected function validator()
+    protected function validator($url)
     {
         $data = $_POST;
         if ($data != null) 
         {
-            switch ($data["url"]) {
-                case "/convidadonew": {
+            switch ($url) {
+                case "convidadonew": {
                     $this->createConvidado($data);
                     return $this->retornaViewConvidadoNew();
                     break;
                 }
-                case "/convidadodelete": {
+                case "convidadodelete": {
                     if($data['id'] != null)
                         $this->deleteConvidado($data);
-                    return $this->retornaViewConvidadoHome();
+                    break;
+                }
+                case "convidadopresente": {
+                    if($data['id'] != null)
+                        $this->presenteConvidado($data);
+                    break;
+                }
+                case "convidadoausente": {
+                    if($data['id'] != null)
+                        $this->ausenteConvidado($data);
                     break;
                 }
                 default : return view('home'); break;
@@ -53,7 +63,8 @@ class ConvidadoController extends Controller
                                                 FROM convidado t1
                                                 JOIN user t2 ON t2.id = t1.idFamilia
                                                WHERE t1.ativo = 1
-                                                 AND t2.status = 1;");
+                                                 AND t2.status = 1
+                                               ORDER BY t2.family, nome;");
 
                     return view('convidado.convidadoHome', compact('convidados'));
                     break;
@@ -70,7 +81,8 @@ class ConvidadoController extends Controller
                                                 JOIN user t2 ON t2.id = t1.idFamilia
                                                WHERE t1.ativo = 1
                                                  AND t2.status = 1
-                                                 AND t1.idFamilia = " . Auth::id() . ";");
+                                                 AND t1.idFamilia = " . Auth::id() . " 
+                                               ORDER BY t2.family, nome;");
 
                     return view('convidado.convidadoHome', compact('convidados','url'));
                     break;
@@ -86,10 +98,11 @@ class ConvidadoController extends Controller
 
         if (Auth::check()) {
 
-            $familias = DB::table('user')
-                        ->where('status', '=', '1')
-                        ->where('name', '=', 'convidado')
-                        ->get();
+            $familias = DB::select("SELECT * 
+                                      FROM user
+                                     WHERE status = 1
+                                       AND name = 'convidado'
+                                     ORDER BY family");
 
             return view('convidado.convidadoNew', compact('familias'));
         } else {
@@ -99,14 +112,20 @@ class ConvidadoController extends Controller
 
     protected function createConvidado(array $data) {
 
-        $nome = $this->formatString($data['convidadoName']); 
+        $nome = FuncoesAuxController::formatString($data['convidadoName']); 
         $idFamilia = $data['familiaConvidado']; 
         $confirmado = $data['confirmado'];
+        $parentesco = $data['parentesco'];
+        $faixaEtaria = $data['faixaEtaria'];
+        $bebida = $data['bebida'];
 
         return Convidado::create([
             'nome' => $nome,
             'idFamilia' => $idFamilia,
             'confirmado' => $confirmado,
+            'parentesco' => $parentesco,
+            'faixaEtaria' => $faixaEtaria,
+            'bebida' => $bebida,
             'ativo' => 1,
         ]);
     }
@@ -119,29 +138,19 @@ class ConvidadoController extends Controller
             ->update(['ativo' => 0]);
     }
 
-    public function formatString($string) {
-         
-        $string = preg_replace(
-            array(
-                "/(á|à|ã|â|ä)/",
-                "/(Á|À|Ã|Â|Ä)/",
-                "/(é|è|ê|ë)/",
-                "/(É|È|Ê|Ë)/",
-                "/(í|ì|î|ï)/",
-                "/(Í|Ì|Î|Ï)/",
-                "/(ó|ò|õ|ô|ö)/",
-                "/(Ó|Ò|Õ|Ô|Ö)/",
-                "/(ú|ù|û|ü)/",
-                "/(Ú|Ù|Û|Ü)/",
-                "/(ñ)/",
-                "/(Ñ)/"
-            ),
-            explode(" ", "a A e E i I o O u U n N"),
-            $string
-        );
-        $string = strtolower($string);
-        $string = str_replace('=','',$string);
+    public function presenteConvidado(array $data) {
+        $id = $data['id'];
 
-        return $string;
+        DB::table('convidado')
+            ->where('id', $id)
+            ->update(['confirmado' => 2]);
+    }
+
+    public function ausenteConvidado(array $data) {
+        $id = $data['id'];
+
+        DB::table('convidado')
+            ->where('id', $id)
+            ->update(['confirmado' => 1]);
     }
 }

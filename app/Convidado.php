@@ -12,6 +12,6 @@ class Convidado extends Model
     protected $table = 'convidado';
 
     protected $fillable = [
-        'id', 'ativo', 'nome', 'idFamilia', 'confirmado', 
+        'id', 'ativo', 'nome', 'idFamilia', 'confirmado', 'parentesco', 'faixaEtaria', 'bebida'
     ];
 }

@@ -14,10 +14,12 @@
                         <input type="text" id="convidadoSearch" class="input form-control" onkeyup="tableSearch('convidadoSearch','convidadoTable',1)" placeholder="Busca por Família..">
                     </div>
                     <div class="col">
-                        <button type="button" id="convidadoSituacaoPendenteSearch" class="btn btn-warning btn-sm" value="pendente" onclick="tableSearch('convidadoSituacaoPendenteSearch','convidadoTable',2)">Pendente</button>
-                        <button type="button" id="convidadoSituacaoAusenteSearch" class="btn btn-danger btn-sm" value="ausência" onclick="tableSearch('convidadoSituacaoAusenteSearch','convidadoTable',2)">Ausente</button>
-                        <button type="button" id="convidadoSituacaoPresenteSearch" class="btn btn-success btn-sm" value="presença" onclick="tableSearch('convidadoSituacaoPresenteSearch','convidadoTable',2)">Presente</button>
-                        <button type="button" id="convidadoSituacaoTodasSearch" class="btn btn-light btn-sm" value="" onclick="tableSearch('convidadoSituacaoTodasSearch','convidadoTable',2)">Todas</button>
+                        <select name="convidadoSituacaoSearch" id="convidadoSituacaoSearch" class="input form-control" onclick="tableSearch('convidadoSituacaoSearch','convidadoTable',2)">
+                            <option value="">Todos</option>
+                            <option value="pendente">Pendente</option>
+                            <option value="ausente">Ausente</option>
+                            <option value="presente">Presente</option>
+                        </select>
                     </div>
                 </div>
 
@@ -31,10 +33,12 @@
                                 <tr>
                                     <th>Nome</th>
                                     <th>Família</th>
-                                    <th>Situação</th>
+                                    <th style="text-align: center;">Situação</th>
                                     <th>Presente</th>
                                     <th>Ausente</th>
+                                    @if( Auth::user()->name != "convidado" )
                                     <th>Excluir</th>
+                                    @endif
                                 </tr>
                             </thead>
                             @if($convidados)
@@ -44,17 +48,17 @@
                                     <td>{{ ucwords($convidado->nomeConvidado) }}</td>
                                     <td>{{ ucfirst($convidado->familyUser) }}</td>
                                     @if($convidado->confirmadoConvidado == 0)
-                                    <td><span class="label label-warning">Pendente</span></td>
+                                    <td align="center"><span class="label label-warning">Pendente</span></td>
                                     @elseif($convidado->confirmadoConvidado == 1)
-                                    <td><span class="label label-danger">Ausência Confirmada</span></td>
+                                    <td align="center"><span class="label label-danger">Ausente</span></td>
                                     @else
-                                    <td><span class="label label-success">Presença Confirmada</span></td>
+                                    <td align="center"><span class="label label-primary">Presente</span></td>
                                     @endif
                                     <td>                                        
-                                        <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" onclick="convidadoPresente('{{ $convidado->idConvidado }}' , '{{ csrf_token() }}')"><span><i class="fas fa-thumbs-up"></i></span></button></div>
+                                        <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" onclick="convidadoPresente('{{ $convidado->idConvidado }}' , '{{ csrf_token() }}')"><span><i class="fas fa-check"></i></span></button></div>
                                     </td>
                                     <td>                                        
-                                        <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" onclick="convidadoAusente('{{ $convidado->idConvidado }}' , '{{ csrf_token() }}')"><span><i class="fas fa-thumbs-down"></i></span></button></div>
+                                        <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" onclick="convidadoAusente('{{ $convidado->idConvidado }}' , '{{ csrf_token() }}')"><span><i class="fas fa-times"></i></span></button></div>
                                     </td>
                                     @if( Auth::user()->name != "convidado" )
                                     <td>                                        

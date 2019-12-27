@@ -59,6 +59,8 @@
         @auth
         <!-- menu button -->                 
         <button class="btn btn-light" id="menu-toggle"><span><i class="fas fa-bars"></i></span></button>
+        <!-- titulo top bar -->
+        <div class="col align-self-center" align="center"><span id="danielaeronald">Daniela & Ronald</span></div>
         <!-- sair button -->   
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item" id="btnSair">

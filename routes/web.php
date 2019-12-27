@@ -15,7 +15,7 @@
 Auth::routes();
 Route::get('/', function () {
     if (Auth::check()) {
-        return view('home');
+        return redirect('/convidadoconfirma');
     } else {
         return view('auth.login');
     }
@@ -34,8 +34,10 @@ Route::get('/convidadonew', 'ConvidadoController@retornaViewConvidadoNew')->name
 Route::get('/{convidadohome}', 'ConvidadoController@retornaViewConvidadoHome')->name('convidadoView');
 Route::get('/{convidadoconfirma}', 'ConvidadoController@retornaViewConvidadoHome')->name('convidadoView');
 
-Route::post('/convidadonew', 'ConvidadoController@validator')->name('convidadoNew');
-Route::post('/convidadodelete', 'ConvidadoController@validator')->name('convidadoDel');
+Route::post('/{convidadonew}', 'ConvidadoController@validator')->name('convidadoNew');
+Route::post('/{convidadodelete}', 'ConvidadoController@validator')->name('convidadoDel');
+Route::post('/{convidadopresente}', 'ConvidadoController@validator')->name('convidadoPresente');
+Route::post('/{convidadoausente}', 'ConvidadoController@validator')->name('convidadoAusente');
 
 
 //routes truco

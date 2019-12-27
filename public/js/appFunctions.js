@@ -51,7 +51,32 @@
         $.post(
             "/convidadodelete", 
             {
-                url: '/convidadodelete',
+                id: id,
+                _token: csrf_token
+            }, 
+            function(result){
+                location.reload();
+            }
+        );
+    };
+
+    function convidadoPresente(id, csrf_token) {
+        $.post(
+            "/convidadopresente", 
+            {
+                id: id,
+                _token: csrf_token
+            }, 
+            function(result){
+                location.reload();
+            }
+        );
+    };
+
+    function convidadoAusente(id, csrf_token) {
+        $.post(
+            "/convidadoausente", 
+            {
                 id: id,
                 _token: csrf_token
             }, 

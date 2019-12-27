@@ -5,7 +5,7 @@
     rgba(0,0,0,.25) - fume
     */
 
-    /* menus */
+    /* corpo site */
     html {
         background-color: #fff9e5;
     }
@@ -19,12 +19,24 @@
         display: none;
     }
 
+    table, p, h1, h2, h3, h4, h5, h6, li {
+        font-size: 1.2rem;
+    }
+
     #nameSite, #topBar {
         height: 9%;
     }
 
     #nameSite>a {
         color: #9B1B30;
+    }
+
+    #danielaeronald {
+        color: #9B1B30;
+        font-family: 'Edwardian Script ITC';
+        font-size: 3rem;
+        font-weight: bolder;
+        text-align: center;
     }
 
     .panel-default>.panel-heading {
@@ -64,6 +76,7 @@
         margin-left: 0;
     }
     
+    /* somente pra telas grandes */
     @media (min-width: 768px) {
         #sidebar-wrapper {
             margin-left: 0;
@@ -77,11 +90,23 @@
         #wrapper.toggled #sidebar-wrapper {
             margin-left: -20rem;
         }
+
+        #danielaeronald {
+            color: #9B1B30;
+            font-family: 'Edwardian Script ITC';
+            font-size: 4rem;
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        table, p, h1, h2, h3, h4, h5, h6, li {
+            font-size: 1.5rem;
+        }
     }
 
     /* icones */
     i {
-        font-size: 19px;
+        font-size: 1.5rem;
         color: #9B1B30;
     }
 
@@ -89,12 +114,12 @@
         color: rgb(214, 50, 50);
     }
 
-    .fa-thumbs-up {
-        color: #2ab27b;
+    .fa-check {
+        color: #3097D1;
     }
 
-    .fa-thumbs-down {
-        color: rgb(214, 56, 50);
+    .label-warning {
+        background-color: rgb(143, 143, 143);
     }
 
     /* botoes */
@@ -110,6 +135,7 @@
     #btnSair {
         margin-right: 3rem;
     }
+
     /* Usuarios */
     .sub-item {
         font-weight: normal;
