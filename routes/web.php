@@ -15,31 +15,34 @@
 Auth::routes();
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect('/convidadoconfirma');
+        return redirect('/convidadoconfirma/{confirma}');
     } else {
         return view('auth.login');
     }
 });
+
+//routes info
 Route::get('/home', 'HomeController@index')->name('home');
 
-//routes user
+//routes user get
 Route::get('/userhome', 'UserController@retornaViewUserHome')->name('userView');
 Route::get('/usernew', 'UserController@retornaViewUserNew')->name('userNew');
-
-Route::post('/usernew', 'UserController@validator')->name('userNew');
-Route::post('/userdelete', 'UserController@validator')->name('userDel');
-
-//routes convidados
+//routes convidados get
+Route::get('/convidadohome/{home}', 'ConvidadoController@retornaViewConvidadoHome')->name('convidadoView');
 Route::get('/convidadonew', 'ConvidadoController@retornaViewConvidadoNew')->name('convidadoNew');
-Route::get('/{convidadohome}', 'ConvidadoController@retornaViewConvidadoHome')->name('convidadoView');
-Route::get('/{convidadoconfirma}', 'ConvidadoController@retornaViewConvidadoHome')->name('convidadoView');
+//routes confirmacao get
+Route::get('/convidadoconfirma/{confirma}', 'ConvidadoController@retornaViewConvidadoHome')->name('convidadoView');
+//routes truco get
+Route::get('/truconew', 'TrucoController@retornaViewTrucoNew')->name('trucoNew');
 
-Route::post('/{convidadonew}', 'ConvidadoController@validator')->name('convidadoNew');
-Route::post('/{convidadodelete}', 'ConvidadoController@validator')->name('convidadoDel');
-Route::post('/{convidadopresente}', 'ConvidadoController@validator')->name('convidadoPresente');
-Route::post('/{convidadoausente}', 'ConvidadoController@validator')->name('convidadoAusente');
-
-
-//routes truco
-//routes confirmacao
-//routes info
+//routes user post
+Route::post('/user/{new}', 'UserController@validator')->name('userNew');
+Route::post('/user/{delete}', 'UserController@validator')->name('userDel');
+//routes convidados post
+Route::post('/convidado/{new}', 'ConvidadoController@validator')->name('convidadoNew');
+Route::post('/convidado/{delete}', 'ConvidadoController@validator')->name('convidadoDel');
+//routes confirmacao post
+Route::post('/convidado/{presente}', 'ConvidadoController@validator')->name('convidadoPresente');
+Route::post('/convidado/{ausente}', 'ConvidadoController@validator')->name('convidadoAusente');
+//routes truco post
+Route::post('/truco/{new}', 'TrucoController@validator')->name('trucoNew');

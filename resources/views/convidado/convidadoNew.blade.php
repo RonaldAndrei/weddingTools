@@ -12,7 +12,7 @@
                             <!-- envia o token via POST -->
                             {{ csrf_field() }}
                             <!-- envia a URL via POST -->
-                            <input id="url" name="url" type="text" value="/convidadonew">
+                            <input id="url" name="url" type="text" value="/convidado/new">
 
                             <div class="form-group{{ $errors->has('convidadoName') ? ' has-error' : '' }}">
                                 <div class=".col-md">

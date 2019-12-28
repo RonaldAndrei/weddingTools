@@ -23,22 +23,22 @@ class ConvidadoController extends Controller
         if ($data != null) 
         {
             switch ($url) {
-                case "convidadonew": {
+                case "new": {
                     $this->createConvidado($data);
                     return $this->retornaViewConvidadoNew();
                     break;
                 }
-                case "convidadodelete": {
+                case "delete": {
                     if($data['id'] != null)
                         $this->deleteConvidado($data);
                     break;
                 }
-                case "convidadopresente": {
+                case "presente": {
                     if($data['id'] != null)
                         $this->presenteConvidado($data);
                     break;
                 }
-                case "convidadoausente": {
+                case "ausente": {
                     if($data['id'] != null)
                         $this->ausenteConvidado($data);
                     break;
@@ -52,7 +52,7 @@ class ConvidadoController extends Controller
         if (Auth::check()) {
 
             switch ($url) {
-                case "convidadohome": {
+                case "home": {
                     $convidados = DB::select("SELECT 
                                                 t1.id idConvidado,
                                                 t1.ativo ativoConvidado,
@@ -69,7 +69,7 @@ class ConvidadoController extends Controller
                     return view('convidado.convidadoHome', compact('convidados'));
                     break;
                 }
-                case "convidadoconfirma": {
+                case "confirma": {
                     $convidados = DB::select("SELECT 
                                                 t1.id idConvidado,
                                                 t1.ativo ativoConvidado,

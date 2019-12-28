@@ -28,9 +28,8 @@
     //usuarios
     function userExcluir(id, csrf_token) {
         $.post(
-            "/userdelete", 
+            "/user/delete", 
             {
-                url: '/userdelete',
                 id: id,
                 _token: csrf_token
             }, 
@@ -49,7 +48,7 @@
     //convidados
     function convidadoExcluir(id, csrf_token) {
         $.post(
-            "/convidadodelete", 
+            "/convidado/delete", 
             {
                 id: id,
                 _token: csrf_token
@@ -62,7 +61,7 @@
 
     function convidadoPresente(id, csrf_token) {
         $.post(
-            "/convidadopresente", 
+            "/convidado/presente", 
             {
                 id: id,
                 _token: csrf_token
@@ -75,7 +74,7 @@
 
     function convidadoAusente(id, csrf_token) {
         $.post(
-            "/convidadoausente", 
+            "/convidado/ausente", 
             {
                 id: id,
                 _token: csrf_token

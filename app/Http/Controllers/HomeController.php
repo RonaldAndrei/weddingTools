@@ -24,7 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $confirmado = FuncoesAuxController::validaConfirmacaoFamilia();
         return view('home', compact('confirmado'));
+
     }
 }

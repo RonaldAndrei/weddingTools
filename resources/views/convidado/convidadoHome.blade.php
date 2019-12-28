@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@if ( Auth::user()->name != "convidado" || $url == "convidadoconfirma")
+@if ( Auth::user()->name != "convidado" || $url == "confirma")
 <div class="container">
     <div class="row">
         <div class="col align-self-center">

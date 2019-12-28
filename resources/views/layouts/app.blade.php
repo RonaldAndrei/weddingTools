@@ -34,18 +34,22 @@
         <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#userDiv" aria-expanded="false"><span><i class="fas fa-users"></i></span>Usuários</a>       
         <div class="collapse navbar-collapsed" id="userDiv">
           <a href="/userhome" class="list-group-item sub-item">Listar Usuários</a>
-          <a href="/usernew" class="list-group-item sub-item" id="userNew">Novo Usuário</a>
+          <a href="/usernew" class="list-group-item sub-item">Novo Usuário</a>
         </div>
 
         <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#convidadosDiv" aria-expanded="false"><span><i class="fas fa-address-card"></i></span>Convidados</a>
         <div class="collapse navbar-collapsed" id="convidadosDiv">
-          <a href="/convidadohome" class="list-group-item sub-item">Listar Convidados</a>
-          <a href="/convidadonew" class="list-group-item sub-item" id="userNew">Novo Convidado</a>
+          <a href="/convidadohome/home" class="list-group-item sub-item">Listar Convidados</a>
+          <a href="/convidadonew" class="list-group-item sub-item">Novo Convidado</a>
         </div>
         @endif
         <a href="/home" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-info-circle"></i></span>Informações</a>
-        <a href="/convidadoconfirma" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-calendar-check"></i></span>Confirmar presença</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-trophy"></i></span>Torneio de Truco</a>
+        <a href="/convidadoconfirma/confirma" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-calendar-check"></i></span>Confirmar presença</a>
+        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#trucoDiv" aria-expanded="false"><span><i class="fas fa-trophy"></i></span>Torneio de Truco</a>
+        <div class="collapse navbar-collapsed" id="trucoDiv">
+          <a href="#" class="list-group-item sub-item">Duplas inscritas</a>
+          <a href="/truconew" class="list-group-item sub-item">Inscreva sua dupla</a>
+        </div>
         <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-gifts"></i></span>Presentes</a>
       </div>
     </div>

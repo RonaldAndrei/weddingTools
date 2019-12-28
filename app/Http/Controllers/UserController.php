@@ -28,19 +28,19 @@ class UserController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator()
+    protected function validator($url)
     {
         $data = $_POST;
         if ($data != null) 
         {
-            switch ($data["url"]) {
-                case "/usernew": {
+            switch ($url) {
+                case "/new": {
                     if($data['name'] != null && $data['family'] != null)
                         $this->createUser($data);
                     return $this->retornaViewUserNew();
                     break;
                 }
-                case "/userdelete": {
+                case "/delete": {
                     if($data['id'] != null)
                         $this->deleteUser($data);
                     return $this->retornaViewUserHome();
