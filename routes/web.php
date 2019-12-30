@@ -15,14 +15,16 @@
 Auth::routes();
 Route::get('/', function () {
     if (Auth::check()) {
-        return redirect('/convidadoconfirma/{confirma}');
+        return redirect('/convidadoconfirma/confirma');
     } else {
         return view('auth.login');
     }
 });
 
 //routes info
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('homeView');
+//routes presente
+Route::get('/presente', 'HomeController@retornaViewPresente')->name('presenteView');
 
 //routes user get
 Route::get('/userhome', 'UserController@retornaViewUserHome')->name('userView');
@@ -33,6 +35,7 @@ Route::get('/convidadonew', 'ConvidadoController@retornaViewConvidadoNew')->name
 //routes confirmacao get
 Route::get('/convidadoconfirma/{confirma}', 'ConvidadoController@retornaViewConvidadoHome')->name('convidadoView');
 //routes truco get
+Route::get('/trucohome', 'TrucoController@retornaViewTrucoHome')->name('trucoView');
 Route::get('/truconew', 'TrucoController@retornaViewTrucoNew')->name('trucoNew');
 
 //routes user post
@@ -46,3 +49,4 @@ Route::post('/convidado/{presente}', 'ConvidadoController@validator')->name('con
 Route::post('/convidado/{ausente}', 'ConvidadoController@validator')->name('convidadoAusente');
 //routes truco post
 Route::post('/truco/{new}', 'TrucoController@validator')->name('trucoNew');
+Route::post('/truco/{delete}', 'TrucoController@validator')->name('trucoDel');

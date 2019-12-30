@@ -8,7 +8,7 @@
                 <div class="panel-heading">Novo convidado</div>
                 <div class="panel-body">
                     <div class="panel-heading">
-                        <form class="form-horizontal" method="POST" action="/convidadonew">
+                        <form class="form-horizontal" method="POST" action="/convidado/new">
                             <!-- envia o token via POST -->
                             {{ csrf_field() }}
                             <!-- envia a URL via POST -->

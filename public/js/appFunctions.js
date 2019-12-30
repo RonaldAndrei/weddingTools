@@ -85,6 +85,47 @@
         );
     };
 
+    //truco
+    function duplaTrucoExcluir(id, idParticipante1, idParticipante2, csrf_token) {
+        $.post(
+            "/truco/delete", 
+            {
+                id: id,
+                idParticipante1: idParticipante1,
+                idParticipante2: idParticipante2,
+                _token: csrf_token
+            }, 
+            function(result){
+                location.reload();
+            }
+        );
+    };
+
+    //informacoes
+    function mostraInforCerimonia() {
+        if($("#infoCerimonia").css('display') == 'none') {
+            $("#abaCerimonia").addClass('active');
+            $("#abaCerimonia").css('font-weight', 'bold');
+            $("#infoCerimonia").show();
+
+            $("#abaChurrasco").removeClass('active');
+            $("#abaChurrasco").css('font-weight', 'normal');
+            $("#infoChurrasco").hide();
+        }
+    };
+
+    function mostraInforChurrasco() {
+        if($("#infoChurrasco").css('display') == 'none') {
+            $("#abaChurrasco").addClass('active');
+            $("#abaChurrasco").css('font-weight', 'bold');
+            $("#infoChurrasco").show();
+
+            $("#abaCerimonia").removeClass('active');
+            $("#abaCerimonia").css('font-weight', 'normal');
+            $("#infoCerimonia").hide();
+        }
+    };
+
     //busca nas tabelas
     function tableSearch(input, table, coluna) {
         
@@ -107,4 +148,4 @@
                 }
             }
         }
-    }
+    };

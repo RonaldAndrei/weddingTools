@@ -29,4 +29,10 @@ class HomeController extends Controller
         return view('home', compact('confirmado'));
 
     }
+
+    public function retornaViewPresente()
+    {
+        $confirmado = FuncoesAuxController::validaConfirmacaoFamilia();
+        return view('presenteHome', compact('confirmado'));
+    }
 }

@@ -123,6 +123,7 @@ class ConvidadoController extends Controller
             'nome' => $nome,
             'idFamilia' => $idFamilia,
             'confirmado' => $confirmado,
+            'inscritoTruco' => 0,
             'parentesco' => $parentesco,
             'faixaEtaria' => $faixaEtaria,
             'bebida' => $bebida,

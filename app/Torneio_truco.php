@@ -12,7 +12,7 @@ class Torneio_truco extends Model
     protected $table = 'Torneio_truco';
 
     protected $fillable = [
-        'id', 'nomeDupla', 'idParticipante1', 'idParticipante2'
+        'id', 'nomeDupla', 'idParticipante1', 'idParticipante2', 'adminDupla', 'ativo'
     ];
     
 }

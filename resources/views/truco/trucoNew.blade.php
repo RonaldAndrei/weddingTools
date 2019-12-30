@@ -6,7 +6,7 @@
     <div class="row">
         <div id="userNewForm" class="col align-self-center">
             <div class="panel panel-default">
-                <div class="panel-heading">Novo convidado</div>
+                <div class="panel-heading">Nova dupla</div>
                 <div class="panel-body">
                     <div class="panel-heading">
                         <form class="form-horizontal" method="POST" action="/truco/new">
@@ -27,12 +27,12 @@
 
                             <div class="form-group{{ $errors->has('idParticipante1') ? ' has-error' : '' }}">
                                 <div class=".col-md">
-                                    <label>Família</label>
+                                    <label>Primeiro participante</label>
                                     <select id="idParticipante1" name="idParticipante1" class="form-control" required>
                                     @if($listaConvidados1)
                                         <option value="">Escolha o primeiro participante</option>
                                         @foreach($listaConvidados1 as $convidado)
-                                        <option value="{{ $convidado->idConvidado }}">{{ ucfirst($convidado->nomeConvidado) }}</option>
+                                        <option value="{{ $convidado->idConvidado }}">{{ ucwords($convidado->nomeConvidado) }}</option>
                                         @endforeach
                                     @endif
                                     </select>
@@ -41,12 +41,12 @@
 
                             <div class="form-group{{ $errors->has('idParticipante2') ? ' has-error' : '' }}">
                                 <div class=".col-md">
-                                    <label>Família</label>
+                                    <label>Segundo participante</label>
                                     <select id="idParticipante2" name="idParticipante2" class="form-control" required>
                                     @if($listaConvidados2)
                                         <option value="">Escolha o segundo participante</option>
                                         @foreach($listaConvidados2 as $convidado)
-                                        <option value="{{ $convidado->idConvidado }}">{{ ucfirst($convidado->nomeConvidado) }}</option>
+                                        <option value="{{ $convidado->idConvidado }}">{{ ucwords($convidado->nomeConvidado) }}</option>
                                         @endforeach
                                     @endif
                                     </select>

@@ -47,10 +47,10 @@
         <a href="/convidadoconfirma/confirma" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-calendar-check"></i></span>Confirmar presença</a>
         <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#trucoDiv" aria-expanded="false"><span><i class="fas fa-trophy"></i></span>Torneio de Truco</a>
         <div class="collapse navbar-collapsed" id="trucoDiv">
-          <a href="#" class="list-group-item sub-item">Duplas inscritas</a>
+          <a href="/trucohome" class="list-group-item sub-item">Duplas inscritas</a>
           <a href="/truconew" class="list-group-item sub-item">Inscreva sua dupla</a>
         </div>
-        <a href="#" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-gifts"></i></span>Presentes</a>
+        <a href="/presente" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-gifts"></i></span>Presentes</a>
       </div>
     </div>
     @endauth

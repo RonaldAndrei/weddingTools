@@ -102,6 +102,11 @@
         table, p, h1, h2, h3, h4, h5, h6, li {
             font-size: 1.5rem;
         }
+
+        #presenteImg {
+            width: 50%;
+            float:right;
+        }
     }
 
     /* icones */
@@ -141,4 +146,14 @@
         font-weight: normal;
         padding-left: 3rem;
         background-color: #eee;
+    }
+
+    /* Informacoes */
+
+    #abaCerimonia {
+        font-weight: bold;
+    }
+
+    #infoChurrasco {
+        display: none;
     }
