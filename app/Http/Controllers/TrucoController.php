@@ -72,7 +72,7 @@ class TrucoController extends Controller
                                                 t2.id idUser,
                                                 t2.family familyUser
                                               FROM convidado t1
-                                              JOIN user t2 ON t2.id = t1.idFamilia
+                                              JOIN user t2 ON t2.id = t1.idFamilia AND t1.confirmado != 1
                                              WHERE t1.ativo = 1
                                                AND t2.status = 1
                                                AND t1.inscritoTruco = 0
@@ -89,7 +89,7 @@ class TrucoController extends Controller
                                                 t2.id idUser,
                                                 t2.family familyUser
                                              FROM convidado t1
-                                             JOIN user t2 ON t2.id = t1.idFamilia
+                                             JOIN user t2 ON t2.id = t1.idFamilia AND t1.confirmado != 1
                                             WHERE t1.ativo = 1
                                               AND t2.status = 1
                                               AND t1.inscritoTruco = 0

@@ -39,9 +39,13 @@
         text-align: center;
     }
 
-    .panel-default>.panel-heading {
+    .panel-default>.panel-heading, .modal-header>h4 {
         font-weight: bolder;
         color: #9B1B30;
+    }
+
+    .modal-body>p {
+        text-align: center;
     }
     
     #sidebar-wrapper {

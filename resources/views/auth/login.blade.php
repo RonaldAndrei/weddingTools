@@ -12,8 +12,8 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <div class="col align-self-center">
-                                <input id="name" type="text" class="form-control" name="name" value="convidado" autocomplete="off" style="display: none;">
+                            <div id="nameDiv" class="col align-self-center collapse">
+                                <input id="name" type="text" class="form-control" name="name" value="convidado" autocomplete="off">
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>

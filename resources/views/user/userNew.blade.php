@@ -47,9 +47,7 @@
 
                             <div class="form-group">
                                 <div class=".col-md .col-md-offset-5">
-                                    <button type="submit" class="btn btn-primary">
-                                        Salvar
-                                    </button>
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
                                 </div>
                             </div>
                         </form>

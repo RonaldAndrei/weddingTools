@@ -34,16 +34,16 @@ class UserController extends Controller
         if ($data != null) 
         {
             switch ($url) {
-                case "/new": {
+                case "new": {
                     if($data['name'] != null && $data['family'] != null)
                         $this->createUser($data);
-                    return $this->retornaViewUserNew();
+                    return redirect('/usernew');
                     break;
                 }
-                case "/delete": {
+                case "delete": {
                     if($data['id'] != null)
                         $this->deleteUser($data);
-                    return $this->retornaViewUserHome();
+                    return redirect('/userhome');
                     break;
                 }
                 default : break;
@@ -69,10 +69,8 @@ class UserController extends Controller
     public function retornaViewUserNew() {
 
         if (Auth::check()) {
-
             return view('user.userNew');
         } else {
-
             return view('auth.login');
         }
     }

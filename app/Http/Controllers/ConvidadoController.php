@@ -25,7 +25,7 @@ class ConvidadoController extends Controller
             switch ($url) {
                 case "new": {
                     $this->createConvidado($data);
-                    return $this->retornaViewConvidadoNew();
+                    return redirect('/convidadonew');
                     break;
                 }
                 case "delete": {

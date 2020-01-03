@@ -3,9 +3,9 @@
         var password = document.getElementById("password");
 
         if(password.value == "sudo"){
-            $("#name").show();
+            $("#nameDiv").collapse("show");
         } else {
-            $("#name").hide();
+            $("#nameDiv").collapse("hide");
         }
     };
 
@@ -67,7 +67,7 @@
                 _token: csrf_token
             }, 
             function(result){
-                location.reload();
+                $("#convidadoPresencaModal").modal({show: true});
             }
         );
     };
@@ -80,7 +80,7 @@
                 _token: csrf_token
             }, 
             function(result){
-                location.reload();
+                $("#convidadoAusenciaModal").modal({show: true});
             }
         );
     };

@@ -76,5 +76,47 @@
         </div>
     </div>
 </div>
+<!-- Modal Presenca content-->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class=".col-md-4">
+            <div class="modal fade" id="convidadoPresencaModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Presença confirmada!</h4>
+                        </div>
+                    <div class="modal-body">
+                        <p>Obrigado por confirmar sua presença.</p>
+                    </div>
+                    <div class="modal-footer align-self-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+<!-- Modal Ausencia content-->
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class=".col-md-4">
+            <div class="modal fade" id="convidadoAusenciaModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ausência confirmada!</h4>
+                        </div>
+                    <div class="modal-body">
+                        <p>Poxa que pena, fica para a próxima.</p>
+                    </div>
+                    <div class="modal-footer align-self-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
 @endif
 @endsection
