@@ -54,6 +54,8 @@
                                         </div>
                                     </div>
 
+                                    <p>ATENÇÃO: Caso não encontre seu nome na lista verifique se o mesmo não está participando de alguma dupla.</p>
+
                                     <div class="form-group">
                                         <div class=".col-md .col-md-offset-5">
                                             <button type="submit" class="btn btn-primary">

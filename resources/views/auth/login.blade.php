@@ -13,7 +13,7 @@
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <div id="nameDiv" class="col align-self-center collapse">
-                                <input id="name" type="text" class="form-control" name="name" value="convidado" autocomplete="off">
+                                <input id="name" type="text" class="form-control" name="name" value="convidado" autocomplete="off" onkeyup="this.value = this.value.toLowerCase().trim();">
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -24,7 +24,7 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <div class="col align-self-center">
-                                <input id="password" type="text" class="form-control" name="password" placeholder="Código de acesso" autocomplete="off" onkeyup="mostraInputName();" required>
+                                <input id="password" type="text" class="form-control" name="password" placeholder="Código de acesso" autocomplete="off" onkeyup="this.value = this.value.toLowerCase().trim();mostraInputName();" required>
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>

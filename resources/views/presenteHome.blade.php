@@ -15,11 +15,11 @@
                             <p class="card-text">Este valor nos ajudará com as despesas do churrasco.</p>
                             <br>
                             <p class="card-text"><strong>Caixa Econômica Federal (104):</strong></p>
-                            <p>Agência: 1757 
-                            <br>Conta Poupança: 0036525-5
-                            <br>Operação: 013
-                            <br>Nome: Daniela Santos
-                            <br>CPF: 107.901.059-93</p>
+                            <p><strong>Agência:</strong> 1757 
+                            <br><strong>Conta Poupança:</strong> 0036525-5
+                            <br><strong>Operação:</strong> 013
+                            <br><strong>Nome:</strong> Daniela Santos
+                            <br><strong>CPF:</strong> 107.901.059-93</p>
                         </div>
                     </div>
                     <div class="col">

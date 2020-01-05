@@ -149,3 +149,25 @@
             }
         }
     };
+
+    //busca nas divs
+    function divSearch(input, div) {
+        
+        var inputValue, filter, divValue, item, i, txtValue;
+        
+        inputValue = document.getElementById(input);
+        filter = inputValue.value.toUpperCase();
+        divValue = document.getElementById(div);
+        item = divValue.children;
+
+        for (i = 0; i < item.length; ++i) {
+            txtValue = item[i].innerText;
+            if (item[i].tagName == 'DIV') {
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    item[i].style.display = "";
+                } else {
+                    item[i].style.display = "none";
+                }
+            }
+        }
+    };

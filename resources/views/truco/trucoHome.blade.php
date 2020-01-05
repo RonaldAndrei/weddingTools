@@ -8,11 +8,19 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Duplas inscritas</div>
 
+                <div class="panel-heading">
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="text" id="duplaSearch" class="input form-control" onkeyup="divSearch('duplaSearch','duplaDiv')" placeholder="Busca por Nome da Dupla ou Participante..">
+                        </div>
+                    </div>
+                </div>
+
                 @if($duplas)
                 <div class="table-responsive-sm">
                     <div class="panel-body">
     
-                        <div class="form-row" style="float:left;">
+                        <div class="form-row" style="float:left;" id="duplaDiv">
                         
                             @foreach($duplas as $dupla)
                             <div class="col">

@@ -22,8 +22,6 @@
                         </select>
                     </div>
                 </div>
-
-                    
                     
                 </div>
                 <div class="table-responsive-sm">
@@ -87,7 +85,8 @@
                             <h4 class="modal-title">Presença confirmada!</h4>
                         </div>
                     <div class="modal-body">
-                        <p>Obrigado por confirmar sua presença.</p>
+                        <p>Obrigado por confirmar sua presença.
+                        <br>Sem você a nossa festa não estaria completa.</p>
                     </div>
                     <div class="modal-footer align-self-center">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();">Fechar</button>
@@ -108,7 +107,8 @@
                             <h4 class="modal-title">Ausência confirmada!</h4>
                         </div>
                     <div class="modal-body">
-                        <p>Poxa que pena, fica para a próxima.</p>
+                        <p>Que pena, entendemos que não será possível comparecer nesta data.
+                        <br>Agradecemos por nos avisar.</p>
                     </div>
                     <div class="modal-footer align-self-center">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();">Fechar</button>
