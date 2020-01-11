@@ -29,7 +29,7 @@
                                     <div class="form-group{{ $errors->has('idParticipante1') ? ' has-error' : '' }}">
                                         <div class=".col-md">
                                             <label>Primeiro participante</label>
-                                            <select id="idParticipante1" name="idParticipante1" class="form-control" required>
+                                            <select id="idParticipante1" name="idParticipante1" class="form-control" onchange="verificaParticipante();" required>
                                             @if($listaConvidados1)
                                                 <option value="">Escolha o primeiro participante</option>
                                                 @foreach($listaConvidados1 as $convidado)

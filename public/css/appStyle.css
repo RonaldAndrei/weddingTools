@@ -24,7 +24,8 @@
     }
 
     #nameSite, #topBar {
-        height: 9%;
+        height: 4rem;
+
     }
 
     #nameSite>a {
@@ -32,11 +33,7 @@
     }
 
     #danielaeronald {
-        color: #9B1B30;
-        font-family: 'Edwardian Script ITC';
-        font-size: 3rem;
-        font-weight: bolder;
-        text-align: center;
+        width: 18rem;
     }
 
     .panel-default>.panel-heading, .modal-header>h4 {
@@ -110,6 +107,10 @@
         #presenteImg {
             width: 50%;
             float:right;
+        }
+
+        #danielaeronald {
+            width: 30rem;
         }
     }
 

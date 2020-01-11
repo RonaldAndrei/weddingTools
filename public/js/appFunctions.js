@@ -26,7 +26,13 @@
     };
 
     //usuarios
-    function userExcluir(id, csrf_token) {
+    function setIdUserExcluir(id, family) {
+        $("#userDeleteId").val(id);
+        $("#userDeleteFamily").text(family);
+    }
+
+    function userExcluir(csrf_token) {
+        var id = $("#userDeleteId").val();
         $.post(
             "/user/delete", 
             {
@@ -45,8 +51,19 @@
         $("#password-confirm").val(password.value);
     };
 
+    function removeAcentos(str) {
+        const parsed = str.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z; .])/g, '').toLowerCase();
+        return parsed;
+    }
+
     //convidados
-    function convidadoExcluir(id, csrf_token) {
+    function setIdConvidadoExcluir(id, nome) {
+        $("#convidadoDeleteId").val(id);
+        $("#convidadoDeleteNome").text(nome);
+    }
+
+    function convidadoExcluir(csrf_token) {
+        var id = $("#convidadoDeleteId").val();
         $.post(
             "/convidado/delete", 
             {
@@ -68,6 +85,7 @@
             }, 
             function(result){
                 $("#convidadoPresencaModal").modal({show: true});
+                mudaSituacaoConvidado('presente', id);
             }
         );
     };
@@ -81,12 +99,43 @@
             }, 
             function(result){
                 $("#convidadoAusenciaModal").modal({show: true});
+                mudaSituacaoConvidado('ausente', id);
             }
         );
     };
 
+    function mudaSituacaoConvidado(resposta, id) {
+        switch (resposta) {
+            case 'presente': {
+                $("#confirmadoConvidado"+id).removeClass();
+                $("#confirmadoConvidado"+id).addClass("label label-primary");
+                $("#confirmadoConvidado"+id).text("Presente");
+                break;
+            }
+            case 'ausente': {
+                $("#confirmadoConvidado"+id).removeClass();
+                $("#confirmadoConvidado"+id).addClass("label label-danger");
+                $("#confirmadoConvidado"+id).text("Ausente");
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
     //truco
-    function duplaTrucoExcluir(id, idParticipante1, idParticipante2, csrf_token) {
+    function setIdDuplaTrucoExcluir(id, idParticipante1, idParticipante2, nome) {
+        $("#trucoDeleteIdDupla").val(id);
+        $("#trucoDeleteIdParticipante1").val(idParticipante1);
+        $("#trucoDeleteIdParticipante2").val(idParticipante2);
+        $("#trucoDeleteDupla").text(nome);
+    }
+
+    function duplaTrucoExcluir(csrf_token) {
+
+        var id = $("#trucoDeleteIdDupla").val();
+        var idParticipante1 = $("#trucoDeleteIdParticipante1").val();
+        var idParticipante2 = $("#trucoDeleteIdParticipante2").val();
         $.post(
             "/truco/delete", 
             {
@@ -100,6 +149,14 @@
             }
         );
     };
+
+    function verificaParticipante() {
+        var id = $("#idParticipante1").val();
+        if(id != "") {
+            $("#idParticipante2 option").show(); 
+            $("#idParticipante2 option[value=" + id + "]").hide();    
+        }    
+    }
 
     //informacoes
     function mostraInforCerimonia() {

@@ -46,6 +46,12 @@ class UserController extends Controller
                     return redirect('/userhome');
                     break;
                 }
+                case "import": {
+                    if($data['namesImport'] != null)
+                        $this->importUserArray($data['namesImport']);
+                    return redirect('/userimport');
+                    break;
+                }
                 default : break;
             }
         }
@@ -72,6 +78,30 @@ class UserController extends Controller
             return view('user.userNew');
         } else {
             return view('auth.login');
+        }
+    }
+
+    public function retornaViewUserImport() {
+
+        if (Auth::check()) {
+            return view('user.userImport');
+        } else {
+            return view('auth.login');
+        }
+    }
+
+    // Cria novos usuarios conforme a lista informada
+    public function importUserArray($usersImport) {
+
+        $userList = explode(';', $usersImport);
+
+        foreach ($userList as $user) {
+            $data = array(
+                'name' => 'convidado',
+                'family' => $user,
+            );
+
+            $this->createUser($data);
         }
     }
 

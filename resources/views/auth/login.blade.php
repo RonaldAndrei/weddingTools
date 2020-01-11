@@ -14,12 +14,12 @@
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <div id="nameDiv" class="col align-self-center collapse">
                                 <input id="name" type="text" class="form-control" name="name" value="convidado" autocomplete="off" onkeyup="this.value = this.value.toLowerCase().trim();">
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
                             </div>
+                            @if ($errors->has('name'))
+                                <span class="help-block col align-self-center">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">

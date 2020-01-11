@@ -33,7 +33,7 @@
                                     @if($familias)
                                         <option value="">Escolha uma família</option>
                                         @foreach($familias as $familia)
-                                        <option value="{{ $familia->id }}">Família {{ ucfirst($familia->family) }}</option>
+                                        <option value="{{ $familia->id }}">Família {{ ucwords($familia->family) }}</option>
                                         @endforeach
                                     @endif
                                     </select>

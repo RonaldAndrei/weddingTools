@@ -29,6 +29,7 @@ Route::get('/presente', 'HomeController@retornaViewPresente')->name('presenteVie
 //routes user get
 Route::get('/userhome', 'UserController@retornaViewUserHome')->name('userView');
 Route::get('/usernew', 'UserController@retornaViewUserNew')->name('userNew');
+Route::get('/userimport', 'UserController@retornaViewUserImport')->name('userImport');
 //routes convidados get
 Route::get('/convidadohome/{home}', 'ConvidadoController@retornaViewConvidadoHome')->name('convidadoView');
 Route::get('/convidadonew', 'ConvidadoController@retornaViewConvidadoNew')->name('convidadoNew');
@@ -40,6 +41,7 @@ Route::get('/truconew', 'TrucoController@retornaViewTrucoNew')->name('trucoNew')
 
 //routes user post
 Route::post('/user/{new}', 'UserController@validator')->name('userNew');
+Route::post('/user/{import}', 'UserController@validator')->name('userImport');
 Route::post('/user/{delete}', 'UserController@validator')->name('userDel');
 //routes convidados post
 Route::post('/convidado/{new}', 'ConvidadoController@validator')->name('convidadoNew');

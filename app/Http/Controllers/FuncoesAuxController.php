@@ -36,6 +36,7 @@ class FuncoesAuxController extends Controller
         );
         $string = strtolower($string);
         $string = str_replace('=','',$string);
+        $string = trim($string);
 
         return $string;
     }

@@ -108,13 +108,21 @@ class TrucoController extends Controller
         $idParticipante1 = $data['idParticipante1']; 
         $idParticipante2 = $data['idParticipante2'];
 
-        return Torneio_truco::create([
+        Torneio_truco::create([
             'nomeDupla' => $nomeDupla, 
             'idParticipante1' => $idParticipante1, 
             'idParticipante2' => $idParticipante2,
             'adminDupla' => Auth::id(),
             'ativo' => 1
         ]);
+
+        DB::table('convidado')
+        ->where('id', $idParticipante1)
+        ->update(['inscritoTruco' => 1]);
+
+        DB::table('convidado')
+        ->where('id', $idParticipante2)
+        ->update(['inscritoTruco' => 1]);
     }
 
     public function deleteInscricaoDupla(array $data) {

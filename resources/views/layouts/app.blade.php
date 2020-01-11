@@ -31,13 +31,14 @@
       <div id="nameSite" class="sidebar-heading"><a class="navbar-brand" href="{{ url('/home') }}"> {{ config('app.name', 'WeddingTools') }} </a></div>
       <div class="list-group list-group-flush">
         @if ( Auth::user()->name != "convidado" )
-        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#userDiv" aria-expanded="false"><span><i class="fas fa-users"></i></span>Usuários</a>       
+        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#userDiv" href="#userDiv" aria-expanded="false"><span><i class="fas fa-users"></i></span>Usuários</a>       
         <div class="collapse navbar-collapsed" id="userDiv">
           <a href="/userhome" class="list-group-item sub-item">Listar Usuários</a>
           <a href="/usernew" class="list-group-item sub-item">Novo Usuário</a>
+          <a href="/userimport" class="list-group-item sub-item">Importar Usuários</a>
         </div>
 
-        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#convidadosDiv" aria-expanded="false"><span><i class="fas fa-address-card"></i></span>Convidados</a>
+        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#convidadosDiv" href="#convidadosDiv" aria-expanded="false"><span><i class="fas fa-address-card"></i></span>Convidados</a>
         <div class="collapse navbar-collapsed" id="convidadosDiv">
           <a href="/convidadohome/home" class="list-group-item sub-item">Listar Convidados</a>
           <a href="/convidadonew" class="list-group-item sub-item">Novo Convidado</a>
@@ -45,7 +46,7 @@
         @endif
         <a href="/home" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-info-circle"></i></span>Informações</a>
         <a href="/convidadoconfirma/confirma" class="list-group-item list-group-item-action bg-light"><span><i class="fas fa-calendar-check"></i></span>Confirmar presença</a>
-        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#trucoDiv" aria-expanded="false"><span><i class="fas fa-trophy"></i></span>Torneio de Truco</a>
+        <a class="list-group-item list-group-item-action bg-light" data-toggle="collapse" data-target="#trucoDiv" href="#trucoDiv" aria-expanded="false"><span><i class="fas fa-trophy"></i></span>Torneio de Truco</a>
         <div class="collapse navbar-collapsed" id="trucoDiv">
           <a href="/trucohome" class="list-group-item sub-item">Duplas inscritas</a>
           <a href="/truconew" class="list-group-item sub-item">Inscreva sua dupla</a>
@@ -64,7 +65,11 @@
         <!-- menu button -->                 
         <button class="btn btn-light" id="menu-toggle"><span><i class="fas fa-bars"></i></span></button>
         <!-- titulo top bar -->
-        <div class="col align-self-center" align="center"><span id="danielaeronald">Daniela & Ronald</span></div>
+        <div class="col align-self-center" align="center">
+          <div class="col">
+              <img id="danielaeronald" class="card-img" src="/img/danielaeronald.png" alt="Card image">
+          </div>
+        </div>
         <!-- sair button -->   
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
           <li class="nav-item" id="btnSair">

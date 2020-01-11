@@ -49,7 +49,7 @@
                                     <li>Fique atento às placas na estrada indicando as entradas</li>
                                 </ul>
                                 <br>
-                                <p>O local possui piscina para as crianças, mesas de bilhar, pebolim e tênis de mesa.
+                                <p>O local possui piscina e cama elástica para as crianças, mesas de bilhar, pebolim e tênis de mesa.
                                 <br>Não esqueça sua chuteira, teremos também um amistoso de futebol.</p>
                                 <br>
                                 <a href="https://www.google.com/maps/place/Estr.+da+Bocaina,+Ponta+Grossa+-+PR/@-25.0284699,-50.2611622,14.5z/data=!4m5!3m4!1s0x94e8161a7deec7df:0x758088631a5e2d98!8m2!3d-25.0323401!4d-50.2532338" target="_blank" class="btn btn-primary">Ver no mapa</a>

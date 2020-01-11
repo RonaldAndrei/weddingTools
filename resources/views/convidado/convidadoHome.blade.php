@@ -14,7 +14,7 @@
                         <input type="text" id="convidadoSearch" class="input form-control" onkeyup="tableSearch('convidadoSearch','convidadoTable',1)" placeholder="Busca por Família..">
                     </div>
                     <div class="col">
-                        <select name="convidadoSituacaoSearch" id="convidadoSituacaoSearch" class="input form-control" onclick="tableSearch('convidadoSituacaoSearch','convidadoTable',2)">
+                        <select name="convidadoSituacaoSearch" id="convidadoSituacaoSearch" class="input form-control" onchange="tableSearch('convidadoSituacaoSearch','convidadoTable',2)">
                             <option value="">Todos</option>
                             <option value="pendente">Pendente</option>
                             <option value="ausente">Ausente</option>
@@ -44,13 +44,13 @@
                             @foreach($convidados as $convidado)
                                 <tr>
                                     <td>{{ ucwords($convidado->nomeConvidado) }}</td>
-                                    <td>{{ ucfirst($convidado->familyUser) }}</td>
+                                    <td>{{ ucwords($convidado->familyUser) }}</td>
                                     @if($convidado->confirmadoConvidado == 0)
-                                    <td align="center"><span class="label label-warning">Pendente</span></td>
+                                    <td align="center"><span id="confirmadoConvidado{{ $convidado->idConvidado }}" class="label label-warning">Pendente</span></td>
                                     @elseif($convidado->confirmadoConvidado == 1)
-                                    <td align="center"><span class="label label-danger">Ausente</span></td>
+                                    <td align="center"><span id="confirmadoConvidado{{ $convidado->idConvidado }}" class="label label-danger">Ausente</span></td>
                                     @else
-                                    <td align="center"><span class="label label-primary">Presente</span></td>
+                                    <td align="center"><span id="confirmadoConvidado{{ $convidado->idConvidado }}" class="label label-primary">Presente</span></td>
                                     @endif
                                     <td>                                        
                                         <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" onclick="convidadoPresente('{{ $convidado->idConvidado }}' , '{{ csrf_token() }}')"><span><i class="fas fa-check"></i></span></button></div>
@@ -60,7 +60,7 @@
                                     </td>
                                     @if( Auth::user()->name != "convidado" )
                                     <td>                                        
-                                        <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" onclick="convidadoExcluir('{{ $convidado->idConvidado }}' , '{{ csrf_token() }}')"><span><i class="fas fa-trash-alt"></i></span></button></div>
+                                        <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" data-toggle="modal" data-target="#convidadoDeleteModal" href="#convidadoDeleteModal" aria-expanded="false" onclick="setIdConvidadoExcluir('{{ $convidado->idConvidado }}' , '{{ ucwords($convidado->nomeConvidado) }}');"><span><i class="fas fa-trash-alt"></i></span></button></div>
                                     </td>
                                     @endif
                                 </tr>
@@ -89,7 +89,7 @@
                         <br>Sem você a nossa festa não estaria completa.</p>
                     </div>
                     <div class="modal-footer align-self-center">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
                     </div>
                 </div>
             </div>
@@ -111,12 +111,38 @@
                         <br>Agradecemos por nos avisar.</p>
                     </div>
                     <div class="modal-footer align-self-center">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
                     </div>
                 </div>
             </div>
         </div>  
     </div>
 </div>
+<!-- Modal confirma delete content -->
+@if($convidados)
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class=".col-md-4">
+            <div class="modal fade" id="convidadoDeleteModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Excluir convidado</h4>
+                        </div>
+                    <div class="modal-body">
+                        <input id="convidadoDeleteId" class="hidden">
+                        <p>Deseja mesmo excluir o(a) convidado(a) <span id="convidadoDeleteNome"></span>?</p>
+                    </div>
+                    <div class="modal-footer align-self-center">
+                    <button type="button" class="btn btn-primary" onclick="convidadoExcluir('{{ csrf_token() }}')">Excluir</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+@endif
+
 @endif
 @endsection
