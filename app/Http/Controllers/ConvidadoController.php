@@ -131,7 +131,9 @@ class ConvidadoController extends Controller
                                                  AND t1.idFamilia = " . Auth::id() . " 
                                                ORDER BY t2.family, nome;");
 
-                    return view('convidado.convidadoHome', compact('convidados','url'));
+                    $info = false;
+
+                    return view('convidado.convidadoHome', compact('convidados','url', 'info'));
                     break;
                 }
                 default : return view('home'); break;

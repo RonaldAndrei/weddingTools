@@ -8,7 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Convidados
-                    @if ( Auth::user()->name != "convidado")
+                    @if ( Auth::user()->name != "convidado" && $info)
                     <button class="btn btn-light" data-toggle="modal" data-target="#convidadosInfo" href="#convidadosInfo" aria-expanded="false"><span><i class="fas fa-info"></i></span></button>
                     @endif
                 </div>
@@ -80,7 +80,7 @@
         </div>
     </div>
 </div>
-@if ( Auth::user()->name != "convidado")
+@if ( Auth::user()->name != "convidado" && $info)
 <!-- Modal Info content-->
 <div class="container">
     <div class="row justify-content-md-center">
