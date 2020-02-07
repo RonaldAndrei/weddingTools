@@ -58,6 +58,10 @@ class ConvidadoController extends Controller
                                                 t1.ativo ativoConvidado,
                                                 t1.nome nomeConvidado,
                                                 t1.confirmado confirmadoConvidado,
+                                                t1.bebida,
+                                                t1.faixaEtaria,
+                                                t1.inscritoTruco,
+                                                t1.parentesco,
                                                 t2.id idUser,
                                                 t2.family familyUser
                                                 FROM convidado t1
@@ -66,7 +70,50 @@ class ConvidadoController extends Controller
                                                  AND t2.status = 1
                                                ORDER BY t2.family, nome;");
 
-                    return view('convidado.convidadoHome', compact('convidados'));
+                    $qtdConvidados = count($convidados);
+                    $presentes = 0; 
+                    $ausentes = 0;
+                    $pendentes = 0;
+                    $qtdBebidas = 0;
+                    $qtdCriancas = 0;
+                    $qtdTruco = 0;
+                    $qtdDaniela = 0;
+                    $qtdRonald = 0;
+
+                    foreach ($convidados as $convidado) {
+
+                        if($convidado->confirmadoConvidado == 2){
+                            $presentes++;
+                            if($convidado->bebida == 1)
+                                $qtdBebidas++;
+                            if($convidado->faixaEtaria == 'C')
+                                $qtdCriancas++;
+                            if($convidado->inscritoTruco == 1)
+                                $qtdTruco++;
+                            if($convidado->parentesco == 'D')
+                                $qtdDaniela++;
+                            if($convidado->parentesco == 'R')
+                                $qtdRonald++;                 
+                        }
+                        else if($convidado->confirmadoConvidado == 1)
+                            $ausentes++;
+                        else if($convidado->confirmadoConvidado == 0)
+                            $pendentes++;       
+                    }
+
+                    $info = array(
+                        "qtdConvidados" => $qtdConvidados,
+                        "presentes" => $presentes,
+                        "ausentes" => $ausentes,
+                        "pendentes" => $pendentes,
+                        "qtdBebidas" => $qtdBebidas,
+                        "qtdCriancas" => $qtdCriancas,
+                        "qtdTruco" => $qtdTruco,
+                        "qtdDaniela" => $qtdDaniela,
+                        "qtdRonald" => $qtdRonald,
+                    );
+
+                    return view('convidado.convidadoHome', compact('convidados', 'info'));
                     break;
                 }
                 case "confirma": {
