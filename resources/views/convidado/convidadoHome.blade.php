@@ -38,9 +38,9 @@
                                     <th>Nome</th>
                                     <th>Família</th>
                                     <th style="text-align: center;">Situação</th>
+                                    @if( Auth::user()->name != "convidado" )
                                     <th>Presente</th>
                                     <th>Ausente</th>
-                                    @if( Auth::user()->name != "convidado" )
                                     <th>Excluir</th>
                                     @endif
                                 </tr>
@@ -58,13 +58,13 @@
                                     @else
                                     <td align="center"><span id="confirmadoConvidado{{ $convidado->idConvidado }}" class="label label-primary">Presente</span></td>
                                     @endif
+                                    @if( Auth::user()->name != "convidado" )
                                     <td>                                        
                                         <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" onclick="convidadoPresente('{{ $convidado->idConvidado }}' , '{{ csrf_token() }}')"><span><i class="fas fa-check"></i></span></button></div>
                                     </td>
                                     <td>                                        
                                         <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" onclick="convidadoAusente('{{ $convidado->idConvidado }}' , '{{ csrf_token() }}')"><span><i class="fas fa-times"></i></span></button></div>
                                     </td>
-                                    @if( Auth::user()->name != "convidado" )
                                     <td>                                        
                                         <div class="col align-self-center"><button type="button" class="btn btn-light btn-xs" data-toggle="modal" data-target="#convidadoDeleteModal" href="#convidadoDeleteModal" aria-expanded="false" onclick="setIdConvidadoExcluir('{{ $convidado->idConvidado }}' , '{{ ucwords($convidado->nomeConvidado) }}');"><span><i class="fas fa-trash-alt"></i></span></button></div>
                                     </td>
